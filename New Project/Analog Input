@@ -1,0 +1,40 @@
+// the choice of the canal of acquisition in the argument of entry of the function
+
+Float AIn(unsigned short num_voie)
+
+unsigned short res; // Partie Basse, partie Haute de la conversion and Total
+float res_conv_ad;  // Total conversion in float 
+float fres; // the result of conversion
+
+// the choice of input canal 
+outp (voie, num_voie );
+
+// choice of mode of launching,
+outp (ctrl_ad, 0x00); software launching
+
+// outp(ctrl_ad, 0x04); hardware launching
+
+
+
+// the launching of conversion (by writing in the conv_ad)
+outp(conv_ad, 0);
+
+
+// detection of end of conversion 
+while ( (inp(stat_ad)&0x01) == 0); // test of bit ADRDY (AD READY)
+                                   // detection of front montant indicating end of conversion
+                                   
+// read the result
+res = inpw(ad) & 0xFFF0;     // result of conversion on 16 bits (12 bits significatis)
+res_conv_ad = (float)res;   // cast in float
+
+
+for negative volts
+if (res >= 0x8000) fres = fres-20;
+return(fres);
+}
+
+      
+
+
+
