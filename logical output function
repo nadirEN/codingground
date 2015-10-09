@@ -1,0 +1,8 @@
+
+
+
+Void Out_PA( unsigned char data)
+{
+  unsigned char ch;
+  outp(out_log,~data);
+}
