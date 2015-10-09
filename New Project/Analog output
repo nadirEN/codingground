@@ -1,0 +1,29 @@
+// Function generate analogue signal ( 2 possible canals and +/- 10 volts)
+// sel_voie = 0 => voie A
+// sel_voie = 1 => voie B
+
+
+Void Aout(unsigned short sel_voie, float tension )
+{
+unsigned short valn;  // the value to write in the register
+
+if (tension <= 0) // negative tension  // interval from 0 to 0x7FFF
+{   if ( tension <- 10 ) tension = -10;
+        valn = ceil ( (tension + 20)*0xFFFF/20 ) - 0x8000;   
+        
+}
+
+else
+
+{ if (tension > 10) tension = 10; // case of positive tension // intervale  from 0x8000 to 0xFFF0
+      valn = ceil ( tension * (0xFFFF/20) + (0x8000));       // offset for positive part.
+}
+
+//send signal in the canal A
+if (sel_voie == 0)
+     outpw (va_data, valN >> 4);
+     
+//send signal in the canal B
+if(sel_canal == 1)
+    outpw(vb_data, valN >> 4);
+}
