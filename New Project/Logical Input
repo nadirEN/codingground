@@ -1,0 +1,6 @@
+
+
+Unsigned char In_PA(void)
+{
+ return inp(in_log);
+}
